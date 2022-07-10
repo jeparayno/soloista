@@ -24,6 +24,6 @@ module.exports = function (app) {
     //Positions
     app.get('/api/position', authenticate, PositionController.getAllPosition);
     app.get('/api/position/:id', PositionController.getOne);
-    app.post('/api/position', authenticate, PositionController.createPosition);
+    app.post('/api/newposition', authenticate, PositionController.createPosition);
     app.get('/api/availableDevs/:id', PositionController.getAllAvailableMatchDevs);
 };

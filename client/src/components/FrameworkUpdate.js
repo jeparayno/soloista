@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
+import axios from 'axios'
+import {useNavigate} from 'react-router-dom'
 
 const FrameworkUpdate = () => {
 
     const [dbLang, setdbLang] = useState([]);
     const [language, setLanguage] = useState([]);
+    const navigate = useNavigate();
 
     const onClick = (name, icon) => {
         setdbLang([...dbLang, name])
@@ -16,12 +19,26 @@ const FrameworkUpdate = () => {
         ]);
     };
 
+    const submitForm = (e) => {
+        e.preventDefault();
+
+        axios.put(`http://localhost:8000/api/dev`, {dbLang}, {
+            withCredentials: true
+        })
+        .then((res) => {
+            navigate(`/devs/dashboard`)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
+
     return (
         <div>
 
         <div className=' container w-75 mx-auto pt-2 border border-dark'>
 
-            <form >
+            <form onSubmit={submitForm}>
             <div className='bg-primary row border border-dark'>
                 <div className='col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 '>
                 <h1 className='text-center text-capitalize'>Add Your Skills</h1>

@@ -20,7 +20,7 @@ const PositionNew = () => {
     useEffect(() => {
         axios.get("http://localhost:8000/api/user/loggedIn", { withCredentials: true })
             .then((res) => {
-                console.log(res.data);
+                // console.log(res.data);
                 setUser(res.data)
                 setLoaded(true);
             })
@@ -37,55 +37,48 @@ const PositionNew = () => {
     const submitForm = (e) => {
         e.preventDefault();
         axios
-            .post('http://localhost:8000/api/position', state)
+            .post('http://localhost:8000/api/newposition', state, {
+                withCredentials: true
+            })
             .then((res) => {
                 // console.log(res);
-                if (res.data.errors) {
-                setErrs(res.data.errors);
-                } else {
-                console.log(res.data._id);
+                console.log(res);
                 navigate(`/orgs/dashboard`);
-                }
             })
             .catch((err) => console.log(err));
     };//end submitForm
 
     return (
-        <div>
-            <Logout />
+            <div>
+                <Logout />
             <div className='w-75 mx-auto pt-2 border border-dark p-2'>
                 <h1 className='bg-primary text-center'>Add A Poition</h1>
             <div className='w-50 mx-auto pt-2'>
             
-            <form onSubmit={submitForm} action="/action_page.php" className="needs-validation" noValidate>
+            <form onSubmit={submitForm}>
                 <div className="form-group">
-                <label for="name">Name</label>
-                <input type="text" className="form-control" id="name" placeholder="Enter Name" name="name" onChange={(e) => state(e)} required />
-                {errs.name ? (
-                    <span className='text-danger'>{errs.name.message}</span>
-                ) : null}
-                <div className="valid-feedback">Valid.</div>
-                <div className="invalid-feedback">Please fill out this field.</div>
+                <label htmlFor="name">Name</label>
+                <input type="text" className="form-control" id="name" placeholder="Enter Name" name="name" onChange={(e) => onChange(e)} />
                 </div>
                 <div className="form-group">
-                <label for="description">Description</label>
-                <input type="text" className="form-control" id="description" placeholder="Enter Description" name="description" onChange={(e) => onChange(e)} required />
-                <div className="valid-feedback">Valid.</div>
-                <div className="invalid-feedback">Please fill out this field.</div>
+                <label htmlFor="description">Description</label>
+                <input type="text" className="form-control" id="description" placeholder="Enter Description" name="description" onChange={(e) => onChange(e)} />
                 </div>
                 <div className="form-group">
-                <label for="skills">Skills</label>
-                <input type="text" className="form-control" id="skills" placeholder="Enter Skills" name="skills" onChange={(e) => onChange(e)} required />
-                <div className="valid-feedback">Valid.</div>
-                <div className="invalid-feedback">Please fill out this field.</div>
+                <label htmlFor="skills">Skills</label>
+                <input type="text" className="form-control" id="skills" placeholder="Enter Skills" name="skills" onChange={(e) => onChange(e)} />
                 </div>
-                <br />
-                    <button type="submit" className="btn btn-primary btn-sm mb-2 "><Link className='text-white' to={`/orgs/dashboard`}>Add Poition</Link></button>
+                <div className="form-group">
+                <label htmlFor="org_id">Unique Id</label>
+                <input type="text" className="form-control" id="org_id" name="org_id" onChange={(e) => onChange(e)} />
+                <p>Copy this id: &nbsp;  {user._id}</p>
+                </div>
+                    <button type="submit" className="btn btn-primary btn-sm mb-2 ">Add Poition</button>
             </form>
             </div>
             </div>
-        </div>
-    )
-}
-
-export default PositionNew;
+            </div>
+        );
+    };
+    
+    export default PositionNew;

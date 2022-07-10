@@ -97,11 +97,6 @@ module.exports = {
     },
 
     createPosition: (req, res) => {
-        const decodedJWT = jwt.decode(req.cookies.usertoken, { complete: true });
-        if (
-        decodedJWT.payload.isOrg === true &&
-        decodedJWT.payload._id === req.body.org_id
-        ) {
         Position.create(req.body)
             .then((newPosition) => {
             console.log(newPosition);
@@ -111,10 +106,27 @@ module.exports = {
             console.log(`error in create:${err}`);
             res.json(err);
             });
-        } else {
-        res.json({ msg: 'You must be an organisation to create a position' });
-        }
     },
+
+    // createPosition: (req, res) => {
+    //     const decodedJWT = jwt.decode(req.cookies.usertoken, { complete: true });
+    //     if (
+    //     decodedJWT.payload.isOrg === true &&
+    //     decodedJWT.payload._id === req.body.org_id
+    //     ) {
+    //     Position.create(req.body)
+    //         .then((newPosition) => {
+    //         console.log(newPosition);
+    //         res.json(newPosition);
+    //         })
+    //         .catch((err) => {
+    //         console.log(`error in create:${err}`);
+    //         res.json(err);
+    //         });
+    //     } else {
+    //     res.json({ msg: 'You must be an organisation to create a position' });
+    //     }
+    // },
 
     getOne: (req, res) => {
         Position.findById(req.params.id)

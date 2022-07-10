@@ -10,6 +10,15 @@ const Dashboard = (props) => {
     const [position, setposition] = useState({});
     const [loaded, setLoaded] = useState(false);
 
+    const getLoggedInUser = () => {
+        axios
+            .get("http://localhost:8000/api/user/loggedin", {
+                withCredentials: true
+            })
+            .then(res => console.log(res))
+            .catch(console.log);
+    };
+
     useEffect(() => {
         axios
             .get(`http://localhost:8000/api/position/${props.posId}`, {
@@ -27,7 +36,7 @@ const Dashboard = (props) => {
     
     useEffect(() => {
         axios
-            .get(`http://localhost:8000/api/availableDevs/${id}`, {
+            .get(`http://localhost:8000/api/availableDevs/${props.posId}`, {
                 withCredentials: true,
             })
             .then((res) => {
@@ -45,7 +54,7 @@ const Dashboard = (props) => {
             </div>
             <h5 className='m-1'>Available Devs</h5>
             <div className='myscroll'>
-            {/* {alldevs.map((element, index) => (
+            {alldevs.map((element, index) => (
                 <div className='border border-dark p-2'>
                 <div>
                     {element.name}
@@ -57,8 +66,7 @@ const Dashboard = (props) => {
                     {element.percentMatch}
                 </div>
                 </div>
-            ))} */}
-            <span>PLACE HOLDER FOR AVAILABLE DEVS</span>
+            ))}
             </div>
         </div>
     )
