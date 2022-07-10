@@ -16,10 +16,7 @@ const OrgDashboard = () => {
                 withCredentials: true,
             })
             .then((res) => {
-                console.log('res.data');
-                console.log(res);
                 setAlldevs(res.data);
-                console.log(alldevs);
                 setLoaded(true);
             })
             .catch((err) => console.log(err));
@@ -32,10 +29,7 @@ const OrgDashboard = () => {
                 withCredentials: true,
             })
             .then((res) => {
-                console.log('res.data');
-                console.log(res);
                 setAllpositions(res.data);
-                console.log(allpositions);
                 setLoaded(true);
             })
             .catch((err) => console.log(err));
@@ -43,10 +37,11 @@ const OrgDashboard = () => {
 
     return (
         <div>
+            <Logout />
             <div className='container'>
                 <div className='row'>
                     <div className='col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 border border-dark'>
-                    <button type="button" className="btn btn-primary btn-block p-0 m-1 text-capitalize mb-2"><Link className="text-white" to={`/orgs/jobs/new`}>List a new position</Link></button>
+                    <button type="button" className="btn btn-primary btn-block text-capitalize mb-2"><Link className="text-white" to={`/orgs/jobs/new`}>List a new position</Link></button>
                         <div className='border border-dark'>
                             <h5 className='text-capitalize m-2'>Positions To Fill</h5>
                             {allpositions.map((element, index) => (

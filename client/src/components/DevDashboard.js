@@ -15,16 +15,15 @@ const DevDashboard = () => {
                 withCredentials: true
             })
             .then((res) => {
-
                 setAllpositions(res.data);
                 setLoaded(true);
             })
             .catch((err) => console.log(err));
     }, []);
 
+
     return (
         <div>
-            {/* <Navbar /> */}
             <Logout />
             <div className='w-25 mx-auto pt-2'>
                 <h5 className='text-capitalize text-decoration-underline'>Positions To Fill</h5>

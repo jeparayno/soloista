@@ -41,12 +41,10 @@ const PositionNew = () => {
                 withCredentials: true
             })
             .then((res) => {
-                // console.log(res);
-                console.log(res);
                 navigate(`/orgs/dashboard`);
             })
             .catch((err) => console.log(err));
-    };//end submitForm
+    };
 
     return (
             <div>
@@ -58,19 +56,19 @@ const PositionNew = () => {
             <form onSubmit={submitForm}>
                 <div className="form-group">
                 <label htmlFor="name">Name</label>
-                <input type="text" className="form-control" id="name" placeholder="Enter Name" name="name" onChange={(e) => onChange(e)} />
+                <input type="text" className="form-control" id="name" placeholder="Enter Name" name="name" onChange={(e) => onChange(e)} required />
                 </div>
                 <div className="form-group">
                 <label htmlFor="description">Description</label>
-                <input type="text" className="form-control" id="description" placeholder="Enter Description" name="description" onChange={(e) => onChange(e)} />
+                <input type="text" className="form-control" id="description" placeholder="Enter Description" name="description" onChange={(e) => onChange(e)} required />
                 </div>
                 <div className="form-group">
                 <label htmlFor="skills">Skills</label>
-                <input type="text" className="form-control" id="skills" placeholder="Enter Skills" name="skills" onChange={(e) => onChange(e)} />
+                <input type="text" className="form-control" id="skills" placeholder="Enter Skills" name="skills" onChange={(e) => onChange(e)} required/>
                 </div>
                 <div className="form-group">
                 <label htmlFor="org_id">Unique Id</label>
-                <input type="text" className="form-control" id="org_id" name="org_id" onChange={(e) => onChange(e)} />
+                <input type="text" className="form-control" id="org_id" name="org_id" onChange={(e) => onChange(e)} required/>
                 <p>Copy this id: &nbsp;  {user._id}</p>
                 </div>
                     <button type="submit" className="btn btn-primary btn-sm mb-2 ">Add Poition</button>

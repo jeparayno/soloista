@@ -9,6 +9,7 @@ import OrgDashboard from './components/OrgDashboard';
 import DevDashboard from './components/DevDashboard';
 import FrameworkUpdate from './components/FrameworkUpdate';
 import Dashboard from './components/Dashboard';
+import Landing from './components/Landing';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
+          <Route path='/' element={<Landing />} />
           <Route path='/:usr/register' element={<Register />} />
           <Route path='/:org/login' element={<Login />} />
           <Route path='/logout' element={<Logout />} />

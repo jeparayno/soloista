@@ -76,13 +76,9 @@ const UserSchema = new mongoose.Schema(
     .set(value => this._confirmPassword = value);
 
     UserSchema.pre('validate', function (next) {
-    // console.log(this.password);
-    // console.log('------------------');
-    // console.log(this.confirmPassword);
     if (this.password !== this.confirmPassword) {
         this.invalidate('confirmPassword', 'Password must match confirm password');
     }
-    // console.log(`${this.isOrg}  ${this.orgName}`);
     if (this.isOrg && this.orgName.length<2){
         console.log('Failed orgName');
         this.invalidate('orgName', 'Organisation name is required');

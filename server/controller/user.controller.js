@@ -17,7 +17,6 @@ module.exports = {
             res.json(allDevs);
         })
         .catch((err) => {
-            console.log(`error in getAll:${err}`);
             res.json(err);
         });
     },
@@ -35,7 +34,6 @@ module.exports = {
             res.json(allOrg);
         })
         .catch((err) => {
-            console.log(`error in getAll:${err}`);
             res.json(err);
         });
     },
@@ -43,11 +41,9 @@ module.exports = {
     getOne: (req, res) => {
         User.findById(req.params.id)
         .then((oneDev) => {
-            console.log(`oneDev: ${oneDev}`);
             res.json(oneDev);
         })
         .catch((err) => {
-            console.log(`error in getOne:${err}`);
             res.json(err);
         });
     },
@@ -60,11 +56,9 @@ module.exports = {
         runValidators: true,
         })
         .then((udatedDev) => {
-            console.log(udatedDev);
             res.json(udatedDev);
         })
         .catch((err) => {
-            console.log(`error in update:${err}`);
             res.json(err);
         });
     },
@@ -72,11 +66,9 @@ module.exports = {
     delete: (req, res) => {
         User.findByIdAndRemove(req.params.id)
         .then((removedDev) => {
-            console.log(removedDev);
             res.json(removedDev);
         })
         .catch((err) => {
-            console.log(`error in delete:${err}`);
             res.json(err);
         });
     },

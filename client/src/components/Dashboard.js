@@ -25,10 +25,7 @@ const Dashboard = (props) => {
                 withCredentials: true,
             })
             .then((res) => {
-                console.log('res.data');
-                console.log(res);
                 setposition(res.data);
-                console.log(position);
                 setLoaded(true);
             })
             .catch((err) => console.log(err));

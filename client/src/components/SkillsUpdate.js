@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import Logout from './Logout';
 import Navbar from './Navbar';
 
 
@@ -26,11 +27,9 @@ const SkillsUpdate = () => {
         axios
             .put(`http://localhost:8000/api/dev`, { dbLang, bio }, { withCredentials: true })
             .then((res) => {
-                console.log(res);
                 if (res.data.errors) {
                 console.log(res.data.errors);
                 } else {
-                console.log(res.data._id);
                 navigate(`/devs/skills/frameworks`);
                 }
             })
@@ -39,7 +38,7 @@ const SkillsUpdate = () => {
 
     return (
         <div>
-            {/* <Navbar /> */}
+            <Logout />
             <div className=' container w-75 mx-auto pt-2 border border-dark'>
 
             <form onSubmit={submitForm}>

@@ -19,7 +19,6 @@ const Navbar = () => {
             withCredentials: true,
             })
             .then((res) => {
-                console.log(res.data);
                 navi("/devs/login");
             })
             .catch(err => {
@@ -28,25 +27,9 @@ const Navbar = () => {
     };
 
     let navigationlink;
-    if (window.location.pathname === '/devs/register' || window.location.pathname === '/orgs/register') {
-        navigationlink = <ul className="navbar-nav ml-auto">
-            <li className="nav-item active">
-            <Link className="nav-link" to={'/devs/login'}>Dev Login</Link>
-            </li>
-            <li className="nav-item active">
-            <Link className="nav-link" to={'/orgs/login'}>Org Login</Link>
-            </li>
-        </ul>
-        } else if (window.location.pathname === '/devs/login' || window.location.pathname === '/orgs/login') {
-        navigationlink = <ul className="navbar-nav ml-auto">
-            <li className="nav-item active">
-            <Link className="nav-link" to={'/devs/register'}>Dev Register</Link>
-            </li>
-            <li className="nav-item active">
-            <Link className="nav-link" to={'/orgs/register'}>Org Register</Link>
-            </li>
-        </ul>
-        } else {
+    if (window.location.pathname === '/devs/register' || window.location.pathname === '/orgs/register' || window.location.pathname === '/devs/login' || window.location.pathname === '/orgs/login') {
+        navigationlink = ''
+        } else if(window.location.pathname === '/devs/dashboard' || window.location.pathname === '/devs/skills/language' || window.location.pathname === '/devs/skills/frameworks') {
         navigationlink = <ul className="navbar-nav ml-auto">
             <li className="nav-item active">
                 <Link className="nav-link" onClick={(e) => logout(e)}>Logout</Link>
@@ -57,8 +40,8 @@ const Navbar = () => {
 
     return (
         <div>
-            <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
-                <Link className='navbar-brand' to={'/devs/register'}>DEVSONDECK</Link>
+            <nav className='navbar navbar-expand-lg navbar navbar-dark bg-primary'>
+                <Link className='navbar-brand' to={'/'}>DEVSONDECK</Link>
                 <div className='collapse navbar-collapse' id="navbarSupportedContent">
                     {navigationlink}
                 </div>

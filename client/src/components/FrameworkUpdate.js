@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
+import Logout from './Logout';
 
 const FrameworkUpdate = () => {
 
@@ -35,7 +36,7 @@ const FrameworkUpdate = () => {
 
     return (
         <div>
-
+            <Logout />
         <div className=' container w-75 mx-auto pt-2 border border-dark'>
 
             <form onSubmit={submitForm}>
